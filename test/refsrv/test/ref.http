@@ -1,0 +1,14 @@
+
+@host=http://localhost:4004
+@svc=/refsvc
+
+### write record to local reference service
+POST {{host}}{{svc}}/TestRecords
+Content-Type: application/json
+
+{
+    "stringField": "LongTestString"
+}
+
+### Read records from local reference service
+GET {{host}}{{svc}}/TestRecords
