@@ -1,0 +1,35 @@
+{
+  "name": "cds-load-test",
+  "version": "1.0.0",
+  "description": "SAP CAP Load Test",
+  "type": "module",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "scripts": {
+    "start": "node index.js",
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RizInno/cds-load-test.git"
+  },
+  "keywords": [
+    "SAP",
+    "CAP",
+    "load",
+    "test"
+  ],
+  "author": "martin@stenzig.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/RizInno/cds-load-test/issues"
+  },
+  "homepage": "https://github.com/RizInno/cds-load-test#readme",
+  "dependencies": {
+    "csvtojson": "^2.0.10",
+    "node-fetch": "^3.2.5"
+  }
+}

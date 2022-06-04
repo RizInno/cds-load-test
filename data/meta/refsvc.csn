@@ -1,0 +1,79 @@
+{
+  "meta": {
+    "creator": "cds-dk 4.9.4"
+  },
+  "$version": "2.0",
+  "definitions": {
+    "refsvc.TestRecords": {
+      "kind": "entity",
+      "@cds.persistence.skip": true,
+      "elements": {
+        "ID": {
+          "key": true,
+          "type": "cds.UUID"
+        },
+        "createdAt": {
+          "type": "cds.Timestamp",
+          "@odata.precision": 7,
+          "@odata.type": "Edm.DateTimeOffset"
+        },
+        "createdBy": {
+          "type": "cds.String",
+          "length": 255,
+          "doc": "User's unique ID"
+        },
+        "modifiedAt": {
+          "type": "cds.Timestamp",
+          "@odata.precision": 7,
+          "@odata.type": "Edm.DateTimeOffset"
+        },
+        "modifiedBy": {
+          "type": "cds.String",
+          "length": 255,
+          "doc": "User's unique ID"
+        },
+        "stringField": {
+          "type": "cds.LargeString"
+        },
+        "largeStringField": {
+          "type": "cds.LargeString"
+        },
+        "booleanField": {
+          "type": "cds.Boolean"
+        },
+        "integerField": {
+          "type": "cds.Integer"
+        },
+        "integer64Field": {
+          "type": "cds.Integer64"
+        },
+        "decimalField": {
+          "type": "cds.DecimalFloat"
+        },
+        "doubleField": {
+          "type": "cds.Double"
+        },
+        "dateField": {
+          "type": "cds.Date"
+        },
+        "timeField": {
+          "type": "cds.Time"
+        },
+        "dateTimeField": {
+          "type": "cds.DateTime",
+          "@odata.precision": 0,
+          "@odata.type": "Edm.DateTimeOffset"
+        },
+        "timeStampField": {
+          "type": "cds.Timestamp",
+          "@odata.precision": 7,
+          "@odata.type": "Edm.DateTimeOffset"
+        }
+      }
+    },
+    "refsvc": {
+      "kind": "service",
+      "@cds.external": true
+    }
+  }
+}
