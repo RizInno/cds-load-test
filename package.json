@@ -30,6 +30,7 @@
   "homepage": "https://github.com/RizInno/cds-load-test#readme",
   "dependencies": {
     "csvtojson": "^2.0.10",
-    "node-fetch": "^3.2.5"
+    "node-fetch": "^3.2.5",
+    "uuidv4": "^6.2.13"
   }
 }
