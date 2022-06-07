@@ -10,7 +10,7 @@
     "Data": {
         "useRandom": true,
         "randomData": {
-            "nrOfGeneratedRecords": 3
+            "nrOfGeneratedRecords": 1000
         },
         "csv": {
             "fileName": "data/test/refsvc.csv"
@@ -23,7 +23,7 @@
             "batchSize": 100
         },
         "parallel": {
-            "channelCount": 3
+            "channelCount": 10
         },
         "batchParallel": {
             "batchSize": 1000,
@@ -32,6 +32,6 @@
     },
     "Report": {
         "showRecordResponseTable": true,
-        "showCallDistributionChart": false
+        "showCallDistributionChart": true
     }
 }
