@@ -1,0 +1,37 @@
+{
+    "Service": {
+        "uri": "http://localhost:4004",
+        "servicePath": "refsvc",
+        "entityName": "TestRecords"
+    },
+    "Metadata":{
+        "fileName":"data/meta/refsvc.csn"
+    },
+    "Data": {
+        "useRandom": true,
+        "randomData": {
+            "nrOfGeneratedRecords": 3
+        },
+        "csv": {
+            "fileName": "data/test/refsvc.csv"
+        }
+    },
+    "Test": {
+        "type": "parallel",
+        "sequential": {},
+        "batchSequential": {
+            "batchSize": 100
+        },
+        "parallel": {
+            "channelCount": 3
+        },
+        "batchParallel": {
+            "batchSize": 1000,
+            "channelCount": 20
+        }
+    },
+    "Report": {
+        "showRecordResponseTable": true,
+        "showCallDistributionChart": false
+    }
+}

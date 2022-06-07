@@ -32,6 +32,7 @@
   "dependencies": {
     "babar": "^0.2.2",
     "cli-progress": "^3.11.1",
+    "config": "^3.3.7",
     "csvtojson": "^2.0.10",
     "debug": "^4.3.4",
     "node-fetch": "^3.2.5",
