@@ -40,6 +40,44 @@ We implemented 3 modes of pushing load onto the backend service:
 ### Execute the test
 To start the execution simply execute `npm start`
 
+#### Testing the refernce service on the BTP
+To deploy the reference service to the BTP, perform the following steps:
+1. Change to the reference server directory `cd test/refsvc`
+2. Run `npm install`
+3. Run `mbt build` to build the reference service and create the MTA.
+4. Deploy the mta using the following command: `cf deploy ./mta_archives/riz.inno.cds-lt_1.0.0.mtar`. The deployment process will provide you with a reference to the endpoint for the reference server. it should look something like this
+```log
+...
+Scaling application "refsrv-srv" to "1" instances... 
+Staging application "refsrv-db-deployer"...
+Staging application "refsrv-srv"...
+Application "refsrv-srv" staged
+Starting application "refsrv-srv"...
+Application "refsrv-db-deployer" staged
+Application "refsrv-srv" started and available at "[your endpoint].hana.ondemand.com"
+Executing task "deploy" on application "refsrv-db-deployer"...
+Skipping deletion of services, because the command line option "--delete-services" is not specified.
+Process finished.
+Use "cf dmol -i b79b533e-e737-11ec-908d-eeee0a8a55c8" to download the logs of the process.```
+```
+
+5. Use the endpoint information you get from the deployment to configure the test environment default.json (you can find it in the config directory).
+
+##### Challenges
+When trying to run an initial test with parameters: 
+
+Data.randomData.nrOfGeneratedRecords = 100000
+Test.type = parallel
+Test.parallel.channelCount = 100
+
+The BTP will assume it is a DOS attach and usually shuts down the server temproarily at around 1,000 requests.
+
+
+Need SSH tunnel? 
+https://blogs.sap.com/2021/06/11/set-up-remote-debugging-to-diagnose-cap-applications-node.js-stack-at-runtime-running-on-sap-btp-cloud-foundry-environment/
+
+
+
 ## Installation
 ### Test Tool
 The test tool is located in the main directory
