@@ -1,0 +1,53 @@
+---
+_schema-version: '3.1'
+ID: riz.inno.cds-lt
+version: 1.0.0
+description: "A reference server for CDS load testing."
+parameters:
+  enable-parallel-deployments: true
+build-parameters:
+  before-all:
+    - builder: custom
+      commands:
+        - npx -p @sap/cds-dk cds build --production
+
+modules:
+  - name: refsrv-srv
+    type: nodejs
+    path: gen/srv
+    parameters:
+      buildpack: nodejs_buildpack
+    build-parameters:
+      builder: npm-ci
+    provides:
+      - name: srv-api # required by consumers of CAP services (e.g. approuter)
+        properties:
+          srv-url: ${default-url}
+    requires:
+      - name: refsrv-auth
+      - name: refsrv-db
+
+  - name: refsrv-db-deployer
+    type: hdb
+    path: gen/db
+    parameters:
+      buildpack: nodejs_buildpack
+    requires:
+      - name: refsrv-db
+
+resources:
+  - name: refsrv-auth
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: xsuaa
+      service-plan: application
+      path: ./security/xs-security.json
+      config:
+        xsappname: refsrv-${org}-${space}
+        tenant-mode: dedicated
+
+  - name: refsrv-db
+    type: com.sap.xs.hdi-container
+    parameters:
+      service: hana # or 'hanatrial' on trial landscapes
+      service-plan: hdi-shared
