@@ -10,7 +10,6 @@
   },
   "scripts": {
     "start": "node index.js",
-    "test": "mocha",
     "lint": "npx eslint 'lib/**'"
   },
   "repository": {
