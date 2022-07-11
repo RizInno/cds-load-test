@@ -16,6 +16,9 @@ GET {{host}}{{svc}}/TestRecords
 ### Read Metadata from local reference service
 GET {{host}}{{svc}}/$metadata
 
+### Returns Connection pool settings
+GET {{host}}{{svc}}/poolSettings()
+
 ### Delete all records
 POST {{host}}{{svc}}/deleteAllRecs
 Content-Type: application/json

@@ -10,11 +10,26 @@ class RefSrv extends cds.ApplicationService{
         /**
          * Event handler for 'deleteAllRecs' action
          */
+        this.on('poolSettings', async () => {
+
+            let returnString = 'Pool config not specified in package.json'
+
+            if (cds.env.requires.db.pool){
+                returnString = JSON.stringify(cds.env.requires.db.pool)
+            }
+
+            return returnString
+        })
+
+        /**
+         * Event handler for 'deleteAllRecs' action
+         */
         this.on('deleteAllRecs', async () => {
 
             // Connect to DB
             const srv = await cds.connect.to("db")
             
+
             // Determine MetaData for Test Records
             let { TestRecords } = srv.entities
       
