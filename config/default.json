@@ -1,26 +1,35 @@
 {
     "Service": {
+        "auth": {
+            "type": "oauth2",
+            "tokenUrl": "[yourAuthServer]/oauth/token",
+            "grantType": "client_credentials",
+            "clientId": "[XSUAAserviceKeyClientId]",
+            "clientSecret": "[XSUAAserviceKeyClientSecret]",
+            "username":"[your username]",
+            "password":"[your password]"
+        },
         "uri": "http://localhost:4004",
         "servicePath": "refsvc",
         "entityName": "TestRecords"
     },
-    "Metadata":{
-        "fileName":"data/meta/refsvc.csn"
+    "Metadata": {
+        "fileName": "data/meta/refsvc.csn"
     },
     "Data": {
         "useRandom": true,
         "randomData": {
-            "nrOfGeneratedRecords": 1000
+            "nrOfGeneratedRecords": 2
         },
         "csv": {
             "fileName": "data/test/refsvc.csv"
         }
     },
     "Test": {
-        "type": "parallel",
+        "type": "sequential",
         "sequential": {},
         "batchSequential": {
-            "batchSize": 100
+            "batchSize": 10
         },
         "parallel": {
             "channelCount": 10

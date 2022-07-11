@@ -1,6 +1,6 @@
 {
   "name": "cds-load-test",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "SAP CAP Load Test",
   "type": "module",
   "main": "index.js",
@@ -34,6 +34,7 @@
     "config": "^3.3.7",
     "csvtojson": "^2.0.10",
     "debug": "^4.3.4",
+    "node-cache": "^5.1.2",
     "node-fetch": "^3.2.5",
     "uuidv4": "^6.2.13"
   },
