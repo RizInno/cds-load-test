@@ -1,12 +1,12 @@
 {
   "name": "refsrv",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A simple CAP project.",
   "repository": "<Add your repository here>",
   "license": "UNLICENSED",
   "private": true,
   "dependencies": {
-    "@sap/cds": "^5",
+    "@sap/cds": "^6",
     "express": "^4",
     "@sap/xssec": "^3",
     "passport": "^0",
@@ -45,11 +45,16 @@
   },
   "cds": {
     "requires": {
-      "auth": {
-        "kind": "xsuaa"
-      },
       "db": {
-        "kind": "hana-cloud"
+        "kind": "sql"
+      },
+      "[production]": {
+        "db": {
+          "kind": "hana-cloud"
+        },
+        "auth": {
+          "kind": "xsuaa"
+        }
       }
     }
   }

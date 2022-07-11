@@ -1,5 +1,5 @@
 
-@host=http://localhost:4004
+@host={{$dotenv %LOADTESTSERVER}}
 @svc=/refsvc
 
 ### write record to local reference service
@@ -15,3 +15,14 @@ GET {{host}}{{svc}}/TestRecords
 
 ### Read Metadata from local reference service
 GET {{host}}{{svc}}/$metadata
+
+### Returns Connection pool settings
+GET {{host}}{{svc}}/poolSettings()
+
+### Delete all records
+POST {{host}}{{svc}}/deleteAllRecs
+Content-Type: application/json
+
+{
+    
+}
