@@ -17,6 +17,7 @@ grant_type=client_credentials
 ### Insert all records
 POST {{host}}{{svc}}/insertAll
 Content-Type: application/json
+Authorization: Bearer {{Token_Request.response.body.access_token}}
 
 {
     "insEntity":"TestRecords",
