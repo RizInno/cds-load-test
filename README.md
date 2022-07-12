@@ -145,6 +145,26 @@ class MassChangeService extends cds.ApplicationService {
 module.exports = MassChangeService
 ```
 
+in order to prevent a "Payload too large error" we need to increase the possible payload via custom server.js file in the srv directory
+```nodejs
+const cds = require('@sap/cds')
+const express = require('express')
+const log = cds.log('bootstrap')
+
+cds.on('bootstrap', (app) => {
+  // add your own middleware before any by cds are added
+  const msgSizeLimit = '50mb'
+
+  log.info('Increase message size to', msgSizeLimit)
+  app.use(express.json({ limit: msgSizeLimit }));
+
+})
+cds.on('served', () => {
+  // add more middleware after all CDS services
+})
+```
+
+
 
 ## Challenges
 When trying to run an initial test with parameters: 
