@@ -1,0 +1,34 @@
+
+@host={{$dotenv %LOADTESTSERVER}}
+@svc=/mass-change
+
+@authUrl={{$dotenv %XSUAA_AUTH_URL}}
+
+###
+# @name Token_Request
+POST {{authUrl}}/oauth/token
+Content-Type: application/x-www-form-urlencoded
+
+grant_type=client_credentials
+&client_id={{$dotenv %XSUAA_CLIENT_ID}}
+&client_secret={{$dotenv %XSUAA_CLIENT_SECRET}}
+
+
+### Insert all records
+POST {{host}}{{svc}}/insertAll
+Content-Type: application/json
+Authorization: Bearer {{Token_Request.response.body.access_token}}
+
+{
+    "insEntity":"TestRecords",
+    "insArray":[
+        {
+            "stringField": "lW9vy1ynXtBtE2CI"
+        },
+        {
+            "stringField": "abcd"
+        }
+
+        ]
+}
+

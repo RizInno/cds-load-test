@@ -42,6 +42,7 @@ We implemented 3 modes of pushing load onto the backend service:
     2. batchSequential
     3. parallel
     4. batchParallel
+    5. customRest
 - Test.batchSequential.batchSize - Batch Size for execution type batchSequential
 - Test.parallel.channelCount - Channel count for execution type parallel
 - Test.batchParallel.batchSize - Batch Size for execution type batchParallel
@@ -85,6 +86,86 @@ The test tool is located in the main directory
 The tool provides a simple test server to evaluate the varying settings. To prepare the server, execute the following:
 1. Change to server directory `cd test/refsrv`
 2. Execute the dependency installation in the main directory `npm i`
+
+
+## MassChange Service
+To add the mass change service that allows for test option 'customRest', you have to add the following REST service to your implementation:
+
+```cds
+@protocol: 'rest'
+service MassChangeService {
+    
+    @open
+    type AnyArray {};
+    
+    action insertAll(insEntity : String, insArray: AnyArray) returns AnyArray;
+ 
+}
+```
+...together with the handler..
+```nodejs
+const cds = require('@sap/cds')
+
+/**
+ * Implementation of the Mass Change service handler
+ */
+class MassChangeService extends cds.ApplicationService {
+
+    async init() {
+
+        const namespace = 'riz.cds.lt' // Namespace defintion
+        const serviceName = 'ReferenceService' // Service name
+
+        // Connect to the service
+        const srv = await cds.connect.to(serviceName);
+
+        /**
+         * Event handler for 'insertAll' action
+         */
+        this.on('insertAll', async (req) => {
+
+            // Get reference to the entity defintion for the entity specified in the action
+            const entity = srv.entities(namespace)[req.data.insEntity]
+
+            // Assemble the Insert query
+            const ins = INSERT.into(entity).entries(req.data.insArray)
+            
+            // Execute the query
+            const res = await srv.run(ins)
+
+            // Return results
+            return {"value":res}
+        })
+
+        // ensure to call super.init()
+        await super.init()
+    }
+
+}
+module.exports = MassChangeService
+```
+
+in order to prevent a "Payload too large error" we need to increase the possible payload via custom server.js file in the srv directory. 
+
+*Please also see: https://answers.sap.com/questions/13675664/cap-nodejs-rest-adapter-usage-with-large-json-obje.html*
+
+
+```nodejs
+const cds = require('@sap/cds')
+const express = require('express')
+
+cds.on('bootstrap', async (app) => {
+  // add your own middleware before any by cds are added
+
+  // set message size limit to 50MB
+  const msgSizeLimit = '50mb'
+  
+  // Add middleware to limit the size of the request body
+  await app.use(express.json({ limit: msgSizeLimit }));
+
+})
+```
+
 
 
 ## Challenges

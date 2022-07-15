@@ -2,6 +2,26 @@
 @host={{$dotenv %LOADTESTSERVER}}
 @svc=/refsvc
 
+@authUrl={{$dotenv %XSUAA_AUTH_URL}}
+
+###
+# @name Token_Request
+POST {{authUrl}}/oauth/token
+Content-Type: application/x-www-form-urlencoded
+
+grant_type=client_credentials
+&client_id={{$dotenv %XSUAA_CLIENT_ID}}
+&client_secret={{$dotenv %XSUAA_CLIENT_SECRET}}
+
+### write record to local reference service
+POST {{host}}{{svc}}/TestRecords
+Content-Type: application/json
+Authorization: Bearer {{Token_Request.response.body.access_token}}
+
+{
+    "stringField": "ABCDE"
+}
+
 ### write record to local reference service
 POST {{host}}{{svc}}/TestRecords
 Content-Type: application/json
@@ -12,16 +32,19 @@ Content-Type: application/json
 
 ### Read records from local reference service
 GET {{host}}{{svc}}/TestRecords
+Authorization: Bearer {{Token_Request.response.body.access_token}}
 
 ### Read Metadata from local reference service
 GET {{host}}{{svc}}/$metadata
 
 ### Returns Connection pool settings
 GET {{host}}{{svc}}/poolSettings()
+Authorization: Bearer {{Token_Request.response.body.access_token}}
 
 ### Delete all records
 POST {{host}}{{svc}}/deleteAllRecs
 Content-Type: application/json
+Authorization: Bearer {{Token_Request.response.body.access_token}}
 
 {
     

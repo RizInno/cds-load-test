@@ -37,7 +37,8 @@
         "batchParallel": {
             "batchSize": 1000,
             "channelCount": 20
-        }
+        },
+        "customRest":{}
     },
     "Report": {
         "showRecordResponseTable": true,
