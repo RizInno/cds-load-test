@@ -103,7 +103,7 @@ service MassChangeService {
 }
 ```
 ...together with the handler..
-```nodejs
+```node
 const cds = require('@sap/cds')
 
 /**
@@ -150,7 +150,7 @@ in order to prevent a "Payload too large error" we need to increase the possible
 *Please also see: https://answers.sap.com/questions/13675664/cap-nodejs-rest-adapter-usage-with-large-json-obje.html*
 
 
-```nodejs
+```node
 const cds = require('@sap/cds')
 const express = require('express')
 
