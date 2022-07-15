@@ -1,15 +1,13 @@
 const cds = require('@sap/cds')
 const express = require('express')
-const log = cds.log('bootstrap')
 
-cds.on('bootstrap', (app) => {
+cds.on('bootstrap', async (app) => {
   // add your own middleware before any by cds are added
+
+  // set message size limit to 50MB
   const msgSizeLimit = '50mb'
+  
+  // Add middleware to limit the size of the request body
+  await app.use(express.json({ limit: msgSizeLimit }));
 
-  log.info('Increase message size to', msgSizeLimit)
-  app.use(express.json({ limit: msgSizeLimit }));
-
-})
-cds.on('served', () => {
-  // add more middleware after all CDS services
 })
