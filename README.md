@@ -83,10 +83,8 @@ The test tool is located in the main directory
     1. Execute the dependency installation in the main directory `npm i`
 
 ### Test Server
-The tool provides a simple test server to evaluate the varying settings. To prepare the server, execute the following:
-1. Change to server directory `cd test/refsrv`
-2. Execute the dependency installation in the main directory `npm i`
-
+The reference server implementation can be found here [https://github.com/RizInno/cds-load-refsrv](https://github.com/RizInno/cds-load-refsrv)
+The tool provides a simple test server to evaluate the varying settings. 
 
 ## MassChange Service
 To add the mass change service that allows for test option 'customRest', you have to add the following REST service to your implementation:
