@@ -11,6 +11,7 @@ build-parameters:
       commands:
         - npx -p @sap/cds-dk cds build --production
 
+
 modules:
   - name: refsrv-srv
     type: nodejs
@@ -18,14 +19,17 @@ modules:
     parameters:
       buildpack: nodejs_buildpack
     build-parameters:
-      builder: npm-ci
+      builder: custom
+      commands:
+        - npm ci
+        - npx patch-package --patch-dir ../../patches
     provides:
       - name: srv-api # required by consumers of CAP services (e.g. approuter)
         properties:
           srv-url: ${default-url}
     requires:
       - name: refsrv-auth
-      - name: refsrv-db
+      - name: refsrv-db 
 
   - name: refsrv-db-deployer
     type: hdb
