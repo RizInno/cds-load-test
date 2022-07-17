@@ -144,28 +144,10 @@ class MassChangeService extends cds.ApplicationService {
 }
 module.exports = MassChangeService
 ```
-
-in order to prevent a "Payload too large error" we need to increase the possible payload via custom server.js file in the srv directory. 
+### Patch to prevent "Payload too large error"
+in order to prevent a "Payload too large error" we need to increase the possible payload via a patch. You can find the temporary patch in the directory [./test/refsrv/patches/@sap+cds+6.0.3.patch](./test/refsrv/patches/@sap+cds+6.0.3.patch)
 
 *Please also see: https://answers.sap.com/questions/13675664/cap-nodejs-rest-adapter-usage-with-large-json-obje.html*
-
-
-```node
-const cds = require('@sap/cds')
-const express = require('express')
-
-cds.on('bootstrap', async (app) => {
-  // add your own middleware before any by cds are added
-
-  // set message size limit to 50MB
-  const msgSizeLimit = '50mb'
-  
-  // Add middleware to limit the size of the request body
-  await app.use(express.json({ limit: msgSizeLimit }));
-
-})
-```
-
 
 
 ## Challenges
@@ -176,9 +158,3 @@ Test.type = parallel
 Test.parallel.channelCount = 100
 
 The BTP will assume it is a DOS attach and usually shuts down the server temproarily at around 1,000 requests.
-
-
-Need SSH tunnel? 
-https://blogs.sap.com/2021/06/11/set-up-remote-debugging-to-diagnose-cap-applications-node.js-stack-at-runtime-running-on-sap-btp-cloud-foundry-environment/
-
-
