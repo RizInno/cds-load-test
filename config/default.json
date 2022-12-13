@@ -1,7 +1,7 @@
 {
     "Service": {
         "auth": {
-            "type": "oauth2",
+            "type": "none",
             "tokenUrl": "[yourAuthServer]/oauth/token",
             "grantType": "client_credentials",
             "clientId": "[XSUAAserviceKeyClientId]",
