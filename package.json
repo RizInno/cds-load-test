@@ -10,6 +10,7 @@
   },
   "scripts": {
     "start": "node index.js",
+    "debug": "DEBUG=cds-load-test* node index.js",
     "lint": "npx eslint 'lib/**'"
   },
   "repository": {
