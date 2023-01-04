@@ -1,7 +1,7 @@
 {
     "Service": {
         "auth": {
-            "type": "oauth2",
+            "type": "none",
             "tokenUrl": "[yourAuthServer]/oauth/token",
             "grantType": "client_credentials",
             "clientId": "[XSUAAserviceKeyClientId]",
@@ -19,7 +19,7 @@
     "Data": {
         "useRandom": true,
         "randomData": {
-            "nrOfGeneratedRecords": 2
+            "nrOfGeneratedRecords": 5
         },
         "csv": {
             "fileName": "data/test/refsvc.csv"
@@ -41,7 +41,10 @@
         "customRest":{}
     },
     "Report": {
+        "progressVisualization": "bar",
+        "showSummaryReport": true,
         "showRecordResponseTable": true,
         "showCallDistributionChart": true
+        
     }
 }

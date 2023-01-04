@@ -1,6 +1,6 @@
 {
   "name": "cds-load-test",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "description": "SAP CAP Load Test",
   "type": "module",
   "main": "index.js",
@@ -9,8 +9,10 @@
     "test": "test"
   },
   "scripts": {
-    "start": "node index.js",
-    "lint": "npx eslint 'lib/**'"
+    "start": "node ./bin/cli.js",
+    "debug": "DEBUG=cds-load-test* node index.js",
+    "lint": "npx eslint 'lib/**'",
+    "test": "mocha"
   },
   "repository": {
     "type": "git",
@@ -34,6 +36,7 @@
     "config": "^3.3.7",
     "csvtojson": "^2.0.10",
     "debug": "^4.3.4",
+    "jsonpath": "^1.1.1",
     "node-cache": "^5.1.2",
     "node-fetch": "^3.2.5",
     "uuidv4": "^6.2.13"
@@ -43,6 +46,7 @@
     "eslint-config-standard": "^17.0.0",
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-n": "^15.2.1",
-    "eslint-plugin-promise": "^6.0.0"
+    "eslint-plugin-promise": "^6.0.0",
+    "mocha": "^10.2.0"
   }
 }
