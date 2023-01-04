@@ -5,8 +5,13 @@ We implemented 3 modes of pushing load onto the backend service:
 1. Sequential processing of all requests
 2. Use of OData Batch functionality
 3. Parallel/Pool send of requests
+4. Custom REST service to allow for custom processing of requests
 
 <img src="doc/img/cds-load-test.png">
+
+**Benchmark**
+- Performance results can be found [here](doc/performance_results.md)
+
 
 **Notworthy Current Limitations**
 - OData Meta data/CSN must be created manually
@@ -41,7 +46,7 @@ We implemented 3 modes of pushing load onto the backend service:
     1. sequential
     2. batchSequential
     3. parallel
-    4. batchParallel
+    4. batchParallel - not implemented yet
     5. customRest
 - Test.batchSequential.batchSize - Batch Size for execution type batchSequential
 - Test.parallel.channelCount - Channel count for execution type parallel
