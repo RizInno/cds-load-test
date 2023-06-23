@@ -10,7 +10,8 @@
             "password":"[your password]"
         },
         "uri": "http://localhost:4004",
-        "servicePath": "refsvc",
+        "servicePath": "odata/v4/refsvc",
+        "namespace":"riz.cds.lt",
         "entityName": "TestRecords"
     },
     "Metadata": {
@@ -19,7 +20,7 @@
     "Data": {
         "useRandom": true,
         "randomData": {
-            "nrOfGeneratedRecords": 5
+            "nrOfGeneratedRecords": 10
         },
         "csv": {
             "fileName": "data/test/refsvc.csv"
@@ -38,7 +39,9 @@
             "batchSize": 1000,
             "channelCount": 20
         },
-        "customRest":{}
+        "customRest":{
+            "massChangeServiceAndAction":"rest/mass-change/insertAll"
+        }
     },
     "Report": {
         "progressVisualization": "bar",

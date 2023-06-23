@@ -1,7 +1,7 @@
 # SAP CAP Load Test Tool
 This tool allows you to excert/simulate load onto your CAP OData service. 
 
-We implemented 3 modes of pushing load onto the backend service: 
+We implemented 4 modes of pushing load onto the backend service: 
 1. Sequential processing of all requests
 2. Use of OData Batch functionality
 3. Parallel/Pool send of requests
