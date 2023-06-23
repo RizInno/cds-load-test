@@ -20,14 +20,14 @@
     "Data": {
         "useRandom": true,
         "randomData": {
-            "nrOfGeneratedRecords": 100
+            "nrOfGeneratedRecords": 10
         },
         "csv": {
             "fileName": "data/test/refsvc.csv"
         }
     },
     "Test": {
-        "type": "customRest",
+        "type": "sequential",
         "sequential": {},
         "batchSequential": {
             "batchSize": 10
