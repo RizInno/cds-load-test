@@ -20,14 +20,14 @@
     "Data": {
         "useRandom": true,
         "randomData": {
-            "nrOfGeneratedRecords": 5
+            "nrOfGeneratedRecords": 100
         },
         "csv": {
             "fileName": "data/test/refsvc.csv"
         }
     },
     "Test": {
-        "type": "sequential",
+        "type": "customRest",
         "sequential": {},
         "batchSequential": {
             "batchSize": 10
@@ -39,7 +39,9 @@
             "batchSize": 1000,
             "channelCount": 20
         },
-        "customRest":{}
+        "customRest":{
+            "massChangeServiceAndAction":"rest/mass-change/insertAll"
+        }
     },
     "Report": {
         "progressVisualization": "bar",
